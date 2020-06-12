@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable fp/no-nil */
+
 declare module '*.ico' {
   const value: any;
   export = value;
