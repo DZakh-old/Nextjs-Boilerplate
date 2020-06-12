@@ -23,7 +23,6 @@
     "plugin:prettier/recommended",
     "plugin:lodash/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:fp/recommended",
     "plugin:lodash-fp/recommended"
   ],
   "plugins": [
@@ -34,7 +33,6 @@
     "promise",
     "prettier",
     "lodash",
-    "fp",
     "lodash-fp"
   ],
   "rules": {

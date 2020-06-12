@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable fp/no-class */
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import sprite from 'svg-sprite-loader/runtime/sprite.build';
 

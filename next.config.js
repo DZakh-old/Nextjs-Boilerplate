@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-mutation */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-extraneous-dependencies */
 const withPlugins = require('next-compose-plugins');

@@ -1,7 +1,3 @@
-/* eslint-disable fp/no-throw */
-/* eslint-disable fp/no-unused-expression */
-/* eslint-disable fp/no-nil */
-
 import { NextApiRequest, NextApiResponse } from 'next';
 import isArray from 'lodash/fp/isArray';
 
