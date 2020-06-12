@@ -1,16 +1,19 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import { User } from '../../interfaces';
-import { sampleUserData } from '../../utils/sample-data';
-import Layout from '../../components/Layout';
-import ListDetail from '../../components/ListDetail';
+import map from 'lodash/fp/map';
+import find from 'lodash/fp/find';
+
+import { User } from '@/interfaces';
+import { sampleUserData } from '@/utils/sample-data';
+import { Layout } from '@/components/layout';
+import { ListDetail } from '@/components/list-detail';
 
 type Props = {
   item?: User;
   errors?: string;
 };
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
+const StaticPropsDetail: React.FC<Props> = ({ item, errors }) => {
   if (errors) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
@@ -32,9 +35,12 @@ export default StaticPropsDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
-  const paths = sampleUserData.map(user => ({
-    params: { id: user.id.toString() },
-  }));
+  const paths = map(
+    user => ({
+      params: { id: user.id.toString() },
+    }),
+    sampleUserData
+  );
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
@@ -47,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
-    const item = sampleUserData.find(data => data.id === Number(id));
+    const item = find(data => data.id === Number(id), sampleUserData);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
     return { props: { item } };
