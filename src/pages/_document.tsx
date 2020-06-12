@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable fp/no-class */
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { NextPageContext } from 'next';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import sprite from 'svg-sprite-loader/runtime/sprite.build';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: NextPageContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     const spriteContent = sprite.stringify();
 
