@@ -1,0 +1,71 @@
+{
+  "env": {
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "parserOptions": {
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    }
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:sonarjs/recommended",
+    "plugin:promise/recommended",
+    "plugin:prettier/recommended",
+    "plugin:lodash/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:fp/recommended",
+    "plugin:lodash-fp/recommended"
+  ],
+  "plugins": [
+    "optimize-regex",
+    "sonarjs",
+    "no-loops",
+    "no-use-extend-native",
+    "promise",
+    "prettier",
+    "lodash",
+    "fp",
+    "lodash-fp"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
+    "optimize-regex/optimize-regex": "warn",
+    "no-loops/no-loops": "warn",
+    "prettier/prettier": "warn",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+
+    // компромисы с prettier
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": false,
+        "assignment": false
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+
+    // Для next-optimized-images
+    "import/no-unresolved": [
+      2,
+      { "ignore": ["\\.(png|jpg|svg)\\?(url|original|include|inline|webp|sprite)$"] }
+    ]
+  },
+  "globals": {
+    "React": "writable"
+  }
+}

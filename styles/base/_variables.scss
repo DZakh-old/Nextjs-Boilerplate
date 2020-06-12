@@ -1,0 +1,26 @@
+:root {
+  /// Regular font family
+  --text-font-stack: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+  /// Code (monospace) font family
+  --code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco',
+    monospace;
+
+  /// Base font size
+  --base-font-size: 14px;
+
+  /// Sizes
+  --side-padding: 29px;
+  --small-padding: 10px;
+  --header-height: 60px;
+  --navigation-width: 313px;
+  --right-offset: 400px;
+  --input-height: 36px;
+
+  /// Modal
+  --side-padding-modal: 80px;
+  --li-small-margin-modal: 1em;
+
+  /// Values
+  --box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
+}
