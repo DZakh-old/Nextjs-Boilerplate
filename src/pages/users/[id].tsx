@@ -1,37 +1,23 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 import map from 'lodash/fp/map';
 import find from 'lodash/fp/find';
 
+import { UsersIdPage } from '@/_pages/users/[id]';
 import { User } from '@/interfaces';
 import { sampleUserData } from '@/utils/sample-data';
-import { Layout } from '@/components/layout';
-import { ListDetail } from '@/components/list-detail';
 
-type Props = {
+type StaticProps = {
   item?: User;
   errors?: string;
 };
 
-const StaticPropsDetail: React.FC<Props> = ({ item, errors }) => {
-  if (errors) {
-    return (
-      <Layout title="Error | Next.js + TypeScript Example">
-        <p>
-          <span style={{ color: 'red' }}>Error:</span> {errors}
-        </p>
-      </Layout>
-    );
-  }
-
-  return (
-    <Layout title={`${item ? item.name : 'User Detail'} | Next.js + TypeScript Example`}>
-      {item && <ListDetail item={item} />}
-    </Layout>
-  );
+const Page: React.FC<StaticProps> = props => {
+  return <UsersIdPage {...props} />;
 };
 
-export default StaticPropsDetail;
+export default Page;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users

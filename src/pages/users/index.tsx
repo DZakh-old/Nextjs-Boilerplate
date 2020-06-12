@@ -1,30 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
+
+import { UsersIndexPage } from '@/_pages/users/index';
 
 import { User } from '@/interfaces';
 import { sampleUserData } from '@/utils/sample-data';
-import { Layout } from '@/components/layout';
-import { List } from '@/components/list';
 
-type Props = {
+type StaticProps = {
   items: User[];
 };
 
-const WithStaticProps: React.FC<Props> = ({ items }) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
-    <h1>Users List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /users</p>
-    <List items={items} />
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-  </Layout>
-);
+const Page: React.FC<StaticProps> = props => {
+  return <UsersIndexPage {...props} />;
+};
+
+export default Page;
 
 export const getStaticProps: GetStaticProps = async () => {
   // Example for including static props in a Next.js function component page.
@@ -33,5 +23,3 @@ export const getStaticProps: GetStaticProps = async () => {
   const items: User[] = sampleUserData;
   return { props: { items } };
 };
-
-export default WithStaticProps;

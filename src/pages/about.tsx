@@ -1,19 +1,7 @@
-import Link from 'next/link';
+import { AboutPage } from '@/_pages/about';
 
-import { Layout } from '@/components/layout';
-
-const AboutPage: React.FC = () => {
-  return (
-    <Layout title="About | Next.js + TypeScript Example">
-      <h1>About</h1>
-      <p>This is the about page</p>
-      <p>
-        <Link href="/">
-          <a>Go home</a>
-        </Link>
-      </p>
-    </Layout>
-  );
+const Page: React.FC = () => {
+  return <AboutPage />;
 };
 
-export default AboutPage;
+export default Page;

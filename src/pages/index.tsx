@@ -1,18 +1,7 @@
-import Link from 'next/link';
+import { IndexPage } from '@/_pages/index';
 
-import { Layout } from '@/components/layout';
-
-const IndexPage: React.FC = () => {
-  return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js</h1>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
-    </Layout>
-  );
+const Page: React.FC = () => {
+  return <IndexPage />;
 };
 
-export default IndexPage;
+export default Page;
