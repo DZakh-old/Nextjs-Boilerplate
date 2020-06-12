@@ -38,13 +38,15 @@
     "lodash-fp"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off",
-    "import/prefer-default-export": "off",
-    "linebreak-style": "off",
     "optimize-regex/optimize-regex": "warn",
     "no-loops/no-loops": "warn",
     "prettier/prettier": "warn",
+
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
     "react/prop-types": "off",
+    "import/extensions": "off",
     "react/jsx-filename-extension": [
       1,
       {
