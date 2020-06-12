@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Layout from '@/components/Layout';
+import { Layout } from '@/components/layout';
 
 const AboutPage: React.FC = () => {
   return (

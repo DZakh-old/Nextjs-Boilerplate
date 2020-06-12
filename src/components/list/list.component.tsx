@@ -1,8 +1,7 @@
 import map from 'lodash/fp/map';
 
 import { User } from '@/interfaces';
-
-import ListItem from './ListItem';
+import { ListItem } from '@/components/list-item';
 
 type Props = {
   items: User[];
