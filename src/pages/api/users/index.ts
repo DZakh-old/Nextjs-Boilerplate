@@ -5,7 +5,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import isArray from 'lodash/fp/isArray';
 
-import { sampleUserData } from '@/src/utils/sample-data';
+import { sampleUserData } from '@/utils/sample-data';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse): void => {
   try {
