@@ -51,6 +51,7 @@
         "extensions": [".tsx"]
       }
     ],
+    "react/jsx-fragments": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
