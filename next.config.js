@@ -12,7 +12,7 @@ const sassConfig = {
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: '[local]___[name]___[hash:base64:5]',
+    localIdentName: '[path]--[name]__[local]__[hash:base64:5]',
   },
 };
 
@@ -42,10 +42,10 @@ const optimizedImagesConfig = {
 };
 
 const nextConfiguration = {
-  publicRuntimeConfig: {
-    AMO_API_URL: process.env.AMO_API_URL,
+  typescript: {
+    ignoreBuildErrors: true,
   },
-  webpack: (config, options) => {
+  webpack: config => {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
 
     config.plugins.push(
