@@ -40,7 +40,7 @@ app
 
     // Set up the proxy.
     if (dev && devProxy) {
-      Object.keys(devProxy).forEach(context => {
+      Object.keys(devProxy).forEach((context) => {
         server.use(context, createProxyMiddleware(devProxy[context]));
       });
     }
@@ -48,7 +48,7 @@ app
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
 
-    server.listen(port, err => {
+    server.listen(port, (err) => {
       if (err) {
         throw err;
       }
@@ -58,7 +58,7 @@ app
       }
     });
   })
-  .catch(err => {
+  .catch((err) => {
     console.log('An error occurred, unable to start the server');
     console.log(err);
   });

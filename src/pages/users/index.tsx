@@ -10,7 +10,7 @@ type StaticProps = {
   items: User[];
 };
 
-const Page: React.FC<StaticProps> = props => {
+const Page: React.FC<StaticProps> = (props) => {
   return <UsersIndexPage {...props} />;
 };
 

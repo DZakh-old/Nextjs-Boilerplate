@@ -11,7 +11,7 @@ const List: React.FC<Props> = ({ items }) => {
   return (
     <ul>
       {map(
-        item => (
+        (item) => (
           <li key={item.id}>
             <ListItem data={item} />
           </li>

@@ -13,7 +13,7 @@ type StaticProps = {
   errors?: string;
 };
 
-const Page: React.FC<StaticProps> = props => {
+const Page: React.FC<StaticProps> = (props) => {
   return <UsersIdPage {...props} />;
 };
 
@@ -22,7 +22,7 @@ export default Page;
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
   const paths = map(
-    user => ({
+    (user) => ({
       params: { id: user.id.toString() },
     }),
     sampleUserData
@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
-    const item = find(data => data.id === Number(id), sampleUserData);
+    const item = find((data) => data.id === Number(id), sampleUserData);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
     return { props: { item } };

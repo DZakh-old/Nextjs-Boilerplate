@@ -45,7 +45,7 @@ const nextConfiguration = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  webpack: config => {
+  webpack: (config) => {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
 
     config.plugins.push(
