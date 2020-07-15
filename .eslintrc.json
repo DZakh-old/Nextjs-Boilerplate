@@ -22,8 +22,7 @@
     "plugin:promise/recommended",
     "plugin:prettier/recommended",
     "plugin:lodash/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:lodash-fp/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "optimize-regex",
@@ -32,8 +31,7 @@
     "no-use-extend-native",
     "promise",
     "prettier",
-    "lodash",
-    "lodash-fp"
+    "lodash"
   ],
   "rules": {
     "optimize-regex/optimize-regex": "warn",
