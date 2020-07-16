@@ -1,7 +1,5 @@
-// TODO:
-// import { ApiRequest } from '@/interfaces';
-// import { callApi, withJsonContent } from '@/utils/call-api';
-import noop from 'lodash/noop';
+import { ApiRequest } from '@/interfaces';
+import { callApi, withJsonContent } from '@/utils/call-api';
 
 import {
   CurrentUserDataContract,
@@ -12,10 +10,6 @@ import {
   LoginDataCheckParams,
   LoginData,
 } from './types';
-
-type ApiRequest = any;
-const callApi = noop;
-const withJsonContent = noop;
 
 const checkUserRequest: ApiRequest<void, CurrentUserDataContract> = async () => {
   return callApi(`v1/user/CHECK_AUTH`, {
