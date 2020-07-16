@@ -1,1 +1,1 @@
-export { default as UsersIndexPage } from './index.page';
+export { default as UsersIndexPage, getStaticProps } from './index.page';

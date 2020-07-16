@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
+import { sampleUserData } from '@/utils/sample-data';
 import { User } from '@/interfaces';
 import { Layout } from '@/components/layout';
 import { List } from '@/components/list';
@@ -25,3 +27,11 @@ const UsersIndexPage: React.FC<Props> = ({ items }) => (
 );
 
 export default UsersIndexPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Example for including static props in a Next.js function component page.
+  // Don't forget to include the respective types for any props passed into
+  // the component.
+  const items: User[] = sampleUserData;
+  return { props: { items } };
+};

@@ -1,1 +1,1 @@
-export { default as UsersIdPage } from './[id].page';
+export { default as UsersIdPage, getStaticPaths, getStaticProps } from './[id].page';
