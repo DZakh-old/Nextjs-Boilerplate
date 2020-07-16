@@ -1,8 +1,9 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import User from 'path/to/interfaces';
+import { CallApi } from '@/utils/call-api';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TODO_ANY = any;
+
+export type ApiRequest<S, Q> = (responseData: S) => ReturnType<CallApi<Q>>;
 
 export type User = {
   id: number;
