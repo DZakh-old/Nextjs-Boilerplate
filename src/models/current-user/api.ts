@@ -1,5 +1,6 @@
 import { ApiRequest } from '@/interfaces';
 import { callApi, withJsonContent } from '@/utils/call-api';
+import { API_HOST_URL } from '@/utils/constants';
 
 import {
   CurrentUserDataContract,
@@ -12,7 +13,7 @@ import {
 } from './types';
 
 const checkUserRequest: ApiRequest<void, CurrentUserDataContract> = async () => {
-  return callApi(`v1/user/CHECK_AUTH`, {
+  return callApi(`${API_HOST_URL}/user/CHECK_AUTH`, {
     mode: 'cors',
     credentials: 'include',
   });
@@ -20,7 +21,7 @@ const checkUserRequest: ApiRequest<void, CurrentUserDataContract> = async () => 
 
 const checkLoginRequest: ApiRequest<LoginDataCheckParams, LoginData> = async (data) => {
   return callApi(
-    `v1/user/CHECK_LOGIN`,
+    `${API_HOST_URL}/user/CHECK_LOGIN`,
     withJsonContent({
       method: 'POST',
       mode: 'cors',
@@ -32,7 +33,7 @@ const checkLoginRequest: ApiRequest<LoginDataCheckParams, LoginData> = async (da
 
 const remindRequest: ApiRequest<RemindUserDataContract, null> = async (data) => {
   return callApi(
-    `v1/user/REMIND`,
+    `${API_HOST_URL}/user/REMIND`,
     withJsonContent({
       method: 'POST',
       mode: 'cors',
@@ -46,7 +47,7 @@ const registerRequest: ApiRequest<RegisterCredentialsContract, CurrentUserDataCo
   data
 ) => {
   return callApi(
-    `v1/user/REGISTER`,
+    `${API_HOST_URL}/user/REGISTER`,
     withJsonContent({
       method: 'POST',
       mode: 'cors',
@@ -60,7 +61,7 @@ const loginRequest: ApiRequest<LoginCredentialsContract, CurrentUserDataContract
   data
 ) => {
   return callApi(
-    `v1/user/LOGIN`,
+    `${API_HOST_URL}/user/LOGIN`,
     withJsonContent({
       method: 'POST',
       mode: 'cors',
@@ -75,7 +76,7 @@ const createPartnerRequest: ApiRequest<
   CurrentUserDataContract
 > = async (data) => {
   return callApi(
-    `v1/user/CREATE_PARTNER_ACCOUNT`,
+    `${API_HOST_URL}/user/CREATE_PARTNER_ACCOUNT`,
     withJsonContent({
       method: 'POST',
       mode: 'cors',
