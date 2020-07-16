@@ -1,10 +1,12 @@
 {
   "name": "nextjs-boilerplate",
+  "description": "A real thing!",
   "version": "1.0.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development PORT=3000 API_HOST_URL='http://localhost:3000/' node server.js",
     "build": "cross-env NODE_ENV=production next build",
     "start": "node server.js",
+    "export": "next export",
     "type-check": "tsc"
   },
   "dependencies": {
