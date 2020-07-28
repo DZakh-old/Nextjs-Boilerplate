@@ -2,6 +2,7 @@
   "env": {
     "es6": true
   },
+  "root": true,
   "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
   "parserOptions": {
     "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
@@ -19,7 +20,6 @@
     "airbnb",
     "airbnb/hooks",
     "plugin:sonarjs/recommended",
-    "plugin:promise/recommended",
     "plugin:prettier/recommended",
     "plugin:lodash/recommended",
     "plugin:@typescript-eslint/recommended"
@@ -29,7 +29,6 @@
     "sonarjs",
     "no-loops",
     "no-use-extend-native",
-    "promise",
     "prettier",
     "lodash"
   ],
@@ -58,8 +57,9 @@
         "aspects": ["invalidHref", "preferButton"]
       }
     ],
+    "no-console": ["error", { "allow": ["error"] }],
 
-    // компромисы с prettier
+    // For prettier
     "react/jsx-wrap-multilines": [
       "error",
       {
@@ -69,7 +69,7 @@
     ],
     "react/jsx-one-expression-per-line": "off",
 
-    // Для next-optimized-images
+    // For next-optimized-images
     "import/no-unresolved": [
       2,
       { "ignore": ["\\.(png|jpg|svg)\\?(url|original|include|inline|webp|sprite)$"] }
