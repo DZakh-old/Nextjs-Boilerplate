@@ -46,7 +46,7 @@ const callApi: CallApi = async (url, requestOptions = {}, retries = 0) => {
       ...requestOptions,
       headers: assignIn(
         {},
-        requestOptions.header,
+        requestOptions.headers,
         serverSideCtx && {
           cookie: get(serverSideCtx, 'req.headers.cookie'),
         },
