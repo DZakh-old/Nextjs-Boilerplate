@@ -10,11 +10,14 @@
     "export": "next export",
     "type-check": "tsc",
     "test-staged": "lint-staged",
+    "prettify": "prettier --write",
     "lint": "ESLINT_CLI=true eslint --cache",
-    "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src"
+    "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src",
+    "generate": "plop --plopfile ./src/generators/index.js"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "app-root-path": "^3.0.0",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
@@ -67,9 +70,11 @@
     "file-loader": "^6.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.4.0",
+    "plop": "^2.7.4",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
+    "ts-node": "^9.0.0",
     "typescript": "3.7.3",
     "url-loader": "^4.1.0"
   },
@@ -83,7 +88,7 @@
       "npm run lint -- --fix"
     ],
     "*.{js,jsx,ts,tsx,md,html,css,json}": [
-      "prettier --write"
+      "npm run prettify --"
     ]
   }
 }
