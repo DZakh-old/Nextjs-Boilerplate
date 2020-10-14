@@ -1,12 +1,13 @@
+import find from 'lodash/fp/find';
+import map from 'lodash/fp/map';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import map from 'lodash/fp/map';
-import find from 'lodash/fp/find';
-
 import { User } from '@/interfaces';
+
+import { sampleUserData } from '@/utils/sample-data';
+
 import { Layout } from '@/components/layout';
 import { ListDetail } from '@/components/list-detail';
-import { sampleUserData } from '@/utils/sample-data';
 
 type Props = {
   item?: User;

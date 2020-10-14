@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 
-import React, { useMemo } from 'react';
-import { applySnapshot, addMiddleware, Instance, types, flow } from 'mobx-state-tree';
 import { useStaticRendering } from 'mobx-react-lite';
+import { applySnapshot, addMiddleware, Instance, types, flow } from 'mobx-state-tree';
 import { actionLogger } from 'mst-middlewares';
+import React, { useMemo } from 'react';
 
 import map from 'lodash/map';
 

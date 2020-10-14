@@ -7,11 +7,19 @@ import assign from 'lodash/assign';
 import values from 'lodash/values';
 
 import {
+  checkUserRequest,
+  checkLoginRequest,
+  loginRequest,
+  registerRequest,
+  remindRequest,
+  createPartnerRequest,
+} from './api';
+import { PartnerStatuses } from './constants';
+import {
   mapCurrentUserDataRes,
   mapCreatePartnerCredentialsReq,
   mapRegisterCredentialsReq,
 } from './mappers';
-import { PartnerStatuses } from './constants';
 import {
   LoginData,
   CreatePartnerCredentials,
@@ -20,14 +28,6 @@ import {
   RemindUserData,
   LoginDataCheckParams,
 } from './types';
-import {
-  checkUserRequest,
-  checkLoginRequest,
-  loginRequest,
-  registerRequest,
-  remindRequest,
-  createPartnerRequest,
-} from './api';
 
 const $user = types.model('UserDataModel', {
   id: types.string,

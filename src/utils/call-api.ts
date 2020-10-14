@@ -4,12 +4,13 @@
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
 
-import get from 'lodash/get';
 import assignIn from 'lodash/assignIn';
+import get from 'lodash/get';
 
 import { TODO_ANY } from '@/interfaces';
-import { isServer } from '@/utils/helpers';
+
 import { FetchError, HttpError } from '@/utils/errors';
+import { isServer } from '@/utils/helpers';
 import { isomorphicRedirect } from '@/utils/router-utils';
 
 const NUMBER_OF_FETCH_RETRIES = 3;
