@@ -6,13 +6,14 @@ const path = require('path');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 const withPlugins = require('next-compose-plugins');
 const withSass = require('@zeit/next-sass');
+const withVideos = require('next-videos');
 const withOptimizedImages = require('next-optimized-images');
 
 const sassConfig = {
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: '[path]--[name]__[local]__[hash:base64:5]',
+    localIdentName: '[path]---[local]_[hash:base64:5]',
   },
 };
 
@@ -74,6 +75,7 @@ module.exports = withPlugins(
   [
     [withSass, sassConfig],
     [withOptimizedImages, optimizedImagesConfig],
+    [withVideos, { assetDirectory: 'static' }],
   ],
   nextConfiguration
 );
