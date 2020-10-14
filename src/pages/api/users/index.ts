@@ -1,5 +1,6 @@
-import isArray from 'lodash/fp/isArray';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+import isArray from 'lodash/fp/isArray';
 
 import { sampleUserData } from '@/utils/sample-data';
 

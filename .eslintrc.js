@@ -89,7 +89,7 @@ module.exports = {
         groups: ['object', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
           // Separate lodash methods from other libs
-          { pattern: 'lodash/*', group: 'external', position: 'after' },
+          { pattern: '{lodash/*,lodash/fp/*}', group: 'external', position: 'after' },
 
           // Split the main components of the app to avoid a solid wall of imports.
           // Other folders from the src will be imported together.

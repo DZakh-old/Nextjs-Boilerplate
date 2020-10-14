@@ -1,6 +1,7 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
+
 import find from 'lodash/fp/find';
 import map from 'lodash/fp/map';
-import { GetStaticProps, GetStaticPaths } from 'next';
 
 import { User } from '@/interfaces';
 
