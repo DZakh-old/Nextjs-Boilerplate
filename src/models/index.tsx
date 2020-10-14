@@ -8,6 +8,8 @@ import React, { useMemo } from 'react';
 
 import map from 'lodash/map';
 
+import { TODO_ANY } from '@/interfaces';
+
 import { isServer } from '@/utils/helpers';
 
 import { $currentUser } from './current-user';
@@ -72,7 +74,7 @@ export function initializeStore(snapshot = null): RootStore {
   return store;
 }
 
-export function useInitialStore(initialState: any): RootStore {
+export function useInitialStore(initialState: TODO_ANY): RootStore {
   return useMemo(() => initializeStore(initialState), [initialState]);
 }
 
