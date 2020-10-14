@@ -7,6 +7,10 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  min-width: var(--min-page-width);
+}
+
 a {
   display: inline-block;
   color: inherit;
@@ -25,6 +29,12 @@ button {
   pointer-events: auto;
   cursor: pointer;
 }
+button,
+button:active,
+button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
 
 svg {
   width: 100%;
@@ -34,7 +44,3 @@ svg {
 input {
   box-shadow: none;
 }
-
-// :focus {
-//   outline: 0 !important;
-// }
