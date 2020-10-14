@@ -3,11 +3,11 @@
 
 const path = require('path');
 
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
-const withPlugins = require('next-compose-plugins');
 const withSass = require('@zeit/next-sass');
-const withVideos = require('next-videos');
+const withPlugins = require('next-compose-plugins');
 const withOptimizedImages = require('next-optimized-images');
+const withVideos = require('next-videos');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 const sassConfig = {
   cssModules: true,
