@@ -13,7 +13,7 @@ const sassConfig = {
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: '[path]---[local]_[hash:base64:5]',
+    localIdentName: '[path]-[local]_[hash:base64:5]',
   },
 };
 
