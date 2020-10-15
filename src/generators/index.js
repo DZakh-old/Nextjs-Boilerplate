@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-extraneous-dependencies */
 
 /**
  * generator/index.js
@@ -17,6 +16,7 @@ const { componentGenerator } = require('./component');
 
 module.exports = (plop) => {
   plop.setGenerator('component', componentGenerator);
+
   // plop.setGenerator('container', containerGenerator);
   // plop.setGenerator('language', languageGenerator);
   // plop.addHelper('directory', (comp) => {
@@ -28,13 +28,13 @@ module.exports = (plop) => {
   //   }
   // });
   // plop.addHelper('curly', (object, open) => (open ? '{' : '}'));
+
   plop.setActionType('prettify', (answers, config) => {
     const folderPath = path.join(
       appRootPath,
       '/src/',
       config.path,
-      plop.getHelper('properCase')(answers.name),
-      '**'
+      plop.getHelper('kebabCase')(answers.name)
     );
 
     execSync(`npm run prettify -- "${folderPath}"`);

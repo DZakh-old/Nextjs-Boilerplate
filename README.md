@@ -7,3 +7,7 @@ npm run dev
 yarn
 yarn dev
 ```
+
+```bash
+npm run generate
+```

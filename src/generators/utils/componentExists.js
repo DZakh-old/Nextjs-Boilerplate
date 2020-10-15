@@ -17,6 +17,7 @@ const pageComponents = fs.readdirSync(path.join(appRootPath, '/src/components'))
 // const pageContainers = fs.readdirSync(path.join(__dirname, '../../../src/containers'));
 const components = pageComponents;
 
+// TODO: Check in depth
 function componentExists(comp) {
   return includes(components, comp);
 }

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-extraneous-dependencies */
-
 /**
  * Component Generator
  */
@@ -27,59 +25,24 @@ const componentGenerator = {
         return 'The name is required';
       },
     },
-    {
-      type: 'confirm',
-      name: 'memo',
-      default: false,
-      message: 'Do you want to wrap your component in React.memo?',
-    },
-    {
-      type: 'confirm',
-      name: 'wantMessages',
-      default: true,
-      message: 'Do you want i18n messages (i.e. will this component use text)?',
-    },
-    {
-      type: 'confirm',
-      name: 'wantLoadable',
-      default: false,
-      message: 'Do you want to load the component asynchronously?',
-    },
   ],
   actions: (data) => {
-    // Generate index.ts and index.test.ts
+    // TODO: Add folder select and more options
+    const FOLDER = 'ui';
+
     const actions = [
       {
-        type: 'add',
-        path: `${appRootPath}/src/components/{{properCase name}}/index.tsx`,
-        templateFile: './component/index.ts.hbs',
+        type: 'addMany',
+        base: `./component/${FOLDER}`,
+        destination: `${appRootPath}/src/components/${FOLDER}/{{kebabCase name}}`,
+        templateFiles: `./component/${FOLDER}/**`,
         abortOnFail: true,
       },
     ];
 
-    // If the user wants i18n messages
-    if (data && data.wantMessages) {
-      actions.push({
-        type: 'add',
-        path: `${appRootPath}/src/components/{{properCase name}}/messages.ts`,
-        templateFile: './component/messages.ts.hbs',
-        abortOnFail: true,
-      });
-    }
-
-    // If the user wants Loadable.ts to load the component asynchronously
-    if (data && data.wantLoadable) {
-      actions.push({
-        type: 'add',
-        path: `${appRootPath}/src/components/{{properCase name}}/Loadable.ts`,
-        templateFile: './component/loadable.ts.hbs',
-        abortOnFail: true,
-      });
-    }
-
     actions.push({
       type: 'prettify',
-      path: '/components/',
+      path: `/components/${FOLDER}`,
     });
 
     return actions;
