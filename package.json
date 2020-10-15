@@ -11,7 +11,7 @@
     "type-check": "tsc",
     "test-staged": "lint-staged",
     "prettify": "prettier --write",
-    "lint": "ESLINT_CLI=true eslint --cache",
+    "lint": "cross-env ESLINT_CLI=true eslint --cache",
     "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src",
     "generate": "plop --plopfile ./src/generators/index.js"
   },
