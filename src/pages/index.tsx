@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Layout } from '@/components/layout';
+import { Layout } from '@/components/connected/layout';
 
 const IndexPage: React.FC = () => {
   return (

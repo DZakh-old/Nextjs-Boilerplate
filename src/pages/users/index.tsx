@@ -5,8 +5,8 @@ import { User } from '@/interfaces';
 
 import { sampleUserData } from '@/utils/sample-data';
 
-import { Layout } from '@/components/layout';
-import { List } from '@/components/list';
+import { Layout } from '@/components/connected/layout';
+import { List } from '@/components/connected/list';
 
 type Props = {
   items: User[];

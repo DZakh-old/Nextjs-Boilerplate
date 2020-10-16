@@ -2,7 +2,7 @@ import map from 'lodash/fp/map';
 
 import { User } from '@/interfaces';
 
-import { ListItem } from '@/components/list-item';
+import { ListItem } from '@/components/connected/list-item';
 
 type Props = {
   items: User[];
