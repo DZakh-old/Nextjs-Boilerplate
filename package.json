@@ -38,6 +38,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-scrollbars-custom": "^4.0.25",
     "svg-sprite-loader": "^5.0.0",
     "type-fest": "^0.16.0",
     "webpack-filter-warnings-plugin": "^1.2.1"
