@@ -1,0 +1,27 @@
+.header {
+  display: grid;
+  align-items: center;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-columns: var(--sidebar-width) 1fr auto 1fr var(--right-offset);
+
+  grid-template-areas: 'left-slot central-slot right-slot';
+}
+.header.with_base_styles {
+  height: var(--header-height);
+  background: var(--color-background-front);
+  padding: 0 var(--side-padding);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.left_slot {
+  grid-area: left-slot;
+}
+
+.central_slot {
+  grid-area: central-slot;
+}
+
+.right_slot {
+  grid-area: right-slot;
+}

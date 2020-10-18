@@ -1,0 +1,20 @@
+.sidebar {
+  position: fixed;
+  background: var(--color-background-front);
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: var(--header-height);
+  top: 0;
+  z-index: calc(var(--burger-background-zindex) + 1);
+}
+
+.sidebar.sidebar_right {
+  right: 0;
+  border-left: 1px solid var(--color-border);
+}
+.sidebar.sidebar_left {
+  left: 0;
+  border-right: 1px solid var(--color-border);
+}

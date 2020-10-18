@@ -9,14 +9,20 @@
   /// Base font size
   --base-font-size: 14px;
 
-  /// Sizes
-  --min-page-width: 320px;
+  /// Offsets
   --side-padding: 29px;
   --small-padding: 10px;
-  --header-height: 60px;
-  --navigation-width: 313px;
   --right-offset: 400px;
+
+  /// Heigths
+  --header-height: 70px;
   --input-height: 36px;
+
+  /// Widths
+  --min-page-width: 320px;
+  --max-page-width: 1920px;
+  --sidebar-width: 420px;
+  --widgets-bar-width: 265px;
 
   /// Modal
   --side-padding-modal: 80px;
