@@ -1,12 +1,11 @@
 /* eslint-disable lodash/prefer-lodash-method */
-/* eslint-disable promise/always-return */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
 
-const express = require('express');
 const cookieParser = require('cookie-parser');
-const next = require('next');
+const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const next = require('next');
 
 const devProxy = {
   '/v1': {
