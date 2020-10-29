@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development PORT=3000 API_HOST_URL='http://localhost:3000/' node server.js",
+    "dev": "cross-env NODE_ENV=development PORT=3000 API_HOST_URL='https://localhost:3000/' node server.js",
     "build": "cross-env NODE_ENV=production next build",
     "start": "node server.js",
     "export": "next export",
@@ -13,7 +13,8 @@
     "prettify": "prettier --write",
     "lint": "cross-env ESLINT_CLI=true eslint --cache",
     "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src",
-    "generate": "plop --plopfile ./src/generators/index.js"
+    "generate": "plop --plopfile ./src/generators/index.js",
+    "generate-certificates": "cd certificates && openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 && openssl rsa -in keytmp.pem -out key.pem"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",

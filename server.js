@@ -1,18 +1,25 @@
-/* eslint-disable lodash/prefer-lodash-method */
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable lodash/prefer-lodash-method */
 /* eslint-disable no-console */
+
+const fs = require('fs');
+const https = require('https');
 
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const next = require('next');
 
+const key = fs.readFileSync('./certificates/key.pem');
+const cert = fs.readFileSync('./certificates/cert.pem');
+
 const devProxy = {
-  '/v1': {
+  '/api': {
     target: 'https://your.back.end.com',
     cookieDomainRewrite: {
       '*': 'localhost',
     },
+    protocol: 'https:',
     secure: false,
     changeOrigin: true,
     logLevel: 'debug',
@@ -20,6 +27,7 @@ const devProxy = {
 };
 
 const port = Number(process.env.PORT) || 3000;
+
 const env = process.env.NODE_ENV;
 const dev = env === 'development';
 const app = next({
@@ -47,17 +55,25 @@ app
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
 
-    server.listen(port, (err) => {
-      if (err) {
-        throw err;
-      }
-      console.log(`> Ready on port ${port} [${env}]`);
-      if (dev) {
-        console.log(`http://localhost:${port}/`);
-      }
-    });
+    if (dev) {
+      https.createServer({ key, cert }, server).listen(port, (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log(`> Ready on port ${port} [${env}]`);
+        console.log(`https://localhost:${port}/`);
+      });
+    } else {
+      server.listen(port, (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log(`> Ready on port ${port} [${env}]`);
+      });
+    }
   })
   .catch((err) => {
-    console.log('An error occurred, unable to start the server');
-    console.log(err);
+    console.error('An error occurred, unable to start the server', err);
   });
