@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 /**
@@ -34,7 +35,8 @@ module.exports = (plop) => {
       appRootPath,
       '/src/',
       config.path,
-      plop.getHelper('kebabCase')(answers.name)
+      plop.getHelper('kebabCase')(answers.name),
+      '**'
     );
 
     execSync(`npm run prettify -- "${folderPath}"`);
