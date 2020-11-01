@@ -115,7 +115,4 @@ module.exports = {
 
     ...(process.env.ESLINT_CLI ? cliRulesOverrides : {}),
   },
-  globals: {
-    React: 'writable',
-  },
 };
