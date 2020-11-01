@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 /**
@@ -13,7 +14,6 @@ const { componentExists } = require('../utils/componentExists');
 const COMPONENT_TYPES = {
   connected: 'connected',
   ui: 'ui',
-  screens: 'screens',
 };
 
 const componentGenerator = {
