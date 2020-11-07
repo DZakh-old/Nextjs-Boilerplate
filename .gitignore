@@ -1,11 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# development
 /node_modules
 /.pnp
 .pnp.js
 .idea
 .vscode
+.eslintcache
+/certificates
 
 # testing
 /coverage
@@ -28,6 +30,3 @@ yarn-error.log*
 
 # temp
 bash.exe.stackdump
-
-# cache
-.eslintcache
