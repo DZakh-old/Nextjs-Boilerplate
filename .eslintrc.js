@@ -54,6 +54,11 @@ module.exports = {
       },
     ],
 
+    // Note you must disable the base rule as it can report incorrect errors
+    // From: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+
     // It's an impossible rule to follow
     'sonarjs/cognitive-complexity': 'off',
 
