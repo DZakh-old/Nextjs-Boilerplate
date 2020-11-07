@@ -1,13 +1,11 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-underscore-dangle */
-
 import { useStaticRendering } from 'mobx-react-lite';
 import { applySnapshot, addMiddleware, Instance, types, flow } from 'mobx-state-tree';
 import { actionLogger } from 'mst-middlewares';
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 
 import map from 'lodash/map';
 
+import { useChangeEffect } from '@/hooks/use-change-effect';
 import { TODO_ANY } from '@/interfaces';
 
 import { isServer } from '@/utils/helpers';
@@ -75,7 +73,13 @@ export function initializeStore(snapshot = null): RootStore {
 }
 
 export function useInitialStore(initialState: TODO_ANY): RootStore {
-  return useMemo(() => initializeStore(initialState), [initialState]);
+  const [initialStore, setInitialStore] = useState(() => initializeStore(initialState));
+
+  useChangeEffect(() => {
+    setInitialStore(initializeStore(initialState));
+  }, [initialState]);
+
+  return initialStore;
 }
 
 const storeContext = React.createContext<RootStore | null>(null);
