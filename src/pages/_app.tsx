@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 
 import { useInitialStore, StoreProvider } from '@/models';
 
@@ -10,6 +11,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <StoreProvider store={$rootStore}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Component {...pageProps} />
     </StoreProvider>
   );
