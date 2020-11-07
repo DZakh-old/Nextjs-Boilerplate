@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable no-param-reassign */
 import { types, flow } from 'mobx-state-tree';
 import { AsyncReturnType } from 'type-fest';
 
@@ -52,14 +51,14 @@ export const $currentUser = types
       'empty'
     ),
   })
-  .views((self) => ({
+  .views((mstSelf) => ({
     get isAuthorized() {
-      return !!self.$user?.id;
+      return !!mstSelf.$user?.id;
     },
   }))
-  .actions((self) => {
+  .actions((mstSelf) => {
     const update = flow(function* updateCurrentUserFlow() {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
         const currentUserResult: AsyncReturnType<typeof checkUserRequest> = yield checkUserRequest();
@@ -68,19 +67,19 @@ export const $currentUser = types
 
         console.log(currentUserData);
 
-        self.$user = currentUserData.user;
-        self.$partnerAccount = currentUserData.partnerAccount;
-        self.state = 'done';
+        mstSelf.$user = currentUserData.user;
+        mstSelf.$partnerAccount = currentUserData.partnerAccount;
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to update current user', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 
     const checkLogin = flow<LoginData, [LoginDataCheckParams]>(function* checkLoginFlow(
       loginDataCheckParams
     ) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       let loginData: LoginData = {};
 
@@ -91,17 +90,17 @@ export const $currentUser = types
 
         loginData = assign({}, loginData, loginDataResult?.data);
 
-        self.state = 'done';
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to check login', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
 
       return loginData;
     });
 
     const loginUser = flow<void, [LoginCredentials]>(function* loginUserFlow(loginCredentials) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
         const currentUserResult: AsyncReturnType<typeof loginRequest> = yield loginRequest(
@@ -110,19 +109,19 @@ export const $currentUser = types
 
         const currentUserData = mapCurrentUserDataRes(currentUserResult.data);
 
-        self.$user = currentUserData.user;
-        self.$partnerAccount = currentUserData.partnerAccount;
-        self.state = 'done';
+        mstSelf.$user = currentUserData.user;
+        mstSelf.$partnerAccount = currentUserData.partnerAccount;
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to login', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 
     const registerUser = flow<void, [RegisterCredentials]>(function* registerUserFlow(
       registerCredentials
     ) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
         const currentUserResult: AsyncReturnType<typeof registerRequest> = yield registerRequest(
@@ -131,32 +130,32 @@ export const $currentUser = types
 
         const currentUserData = mapCurrentUserDataRes(currentUserResult.data);
 
-        self.$user = currentUserData.user;
-        self.$partnerAccount = currentUserData.partnerAccount;
-        self.state = 'done';
+        mstSelf.$user = currentUserData.user;
+        mstSelf.$partnerAccount = currentUserData.partnerAccount;
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to register', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 
     const remindUser = flow<void, [RemindUserData]>(function* remindUserFlow(remindUserData) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
         yield remindRequest(remindUserData);
 
-        self.state = 'done';
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to remind', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 
     const createPartner = flow<void, [CreatePartnerCredentials]>(function* createPartnerFlow(
       createPartnerCredentials
     ) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
         const currentUserResult: AsyncReturnType<typeof createPartnerRequest> = yield createPartnerRequest(
@@ -165,12 +164,12 @@ export const $currentUser = types
 
         const currentUserData = mapCurrentUserDataRes(currentUserResult.data);
 
-        self.$user = currentUserData.user;
-        self.$partnerAccount = currentUserData.partnerAccount;
-        self.state = 'done';
+        mstSelf.$user = currentUserData.user;
+        mstSelf.$partnerAccount = currentUserData.partnerAccount;
+        mstSelf.state = 'done';
       } catch (err) {
         console.error('Failed to create partner', err);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 

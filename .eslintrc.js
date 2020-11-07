@@ -115,7 +115,7 @@ module.exports = {
     // Для работы с immer
     'no-param-reassign': [
       'error',
-      { props: true, ignorePropertyModificationsForRegex: ['[dD]raft'] },
+      { props: true, ignorePropertyModificationsForRegex: ['[dD]raft', 'mstSelf'] },
     ],
 
     ...(process.env.ESLINT_CLI ? cliRulesOverrides : {}),

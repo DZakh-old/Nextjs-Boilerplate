@@ -24,16 +24,16 @@ const $rootStore = types
     $currentUser,
     state: types.maybe(types.enumeration('State', ['pending', 'done', 'error'])),
   })
-  .actions((self) => {
+  .actions((mstSelf) => {
     const update = flow(function* updateSubStores(storeNames: InnerStoreNames[]) {
-      self.state = 'pending';
+      mstSelf.state = 'pending';
 
       try {
-        yield Promise.all(map(storeNames, (storeName) => self[storeName].update()));
-        self.state = 'done';
+        yield Promise.all(map(storeNames, (storeName) => mstSelf[storeName].update()));
+        mstSelf.state = 'done';
       } catch (error) {
         console.error('Failed to update root store', error);
-        self.state = 'error';
+        mstSelf.state = 'error';
       }
     });
 
