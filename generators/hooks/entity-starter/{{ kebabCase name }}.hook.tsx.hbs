@@ -1,0 +1,39 @@
+{{#if withStyles}}
+import React, { useMemo } from 'react';
+{{else}}
+import { useState, useEffect } from 'react';
+{{/if}}
+
+{{#if withAssets}}
+import usersData from './assets/data.json';
+{{/if}}
+
+{{#if withStyles}}
+import css from './{{ kebabCase name }}.module.scss';
+{{/if}}
+
+const {{ camelCase name }} = (): {{#if withStyles}}React.ReactNode{{else}}number{{/if}} => {
+{{#if withAssets}}
+console.error('CHECK ASSETS: ', usersData)
+{{/if}}
+
+{{#if withStyles}}
+return useMemo(() => {
+return <div className={css.container}>{{ camelCase name }} hook</div>;
+}, []);
+{{else}}
+const [counter, setCounter] = useState(0);
+
+useEffect(() => {
+const intervalId = setInterval(() => {
+setCounter((curCounter) => curCounter + 1);
+}, 1000);
+
+return clearInterval(intervalId);
+}, []);
+
+return counter;
+{{/if}}
+};
+
+export default {{ camelCase name }};

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import noop from 'lodash/noop';
 
-export const useChangeEffect = (
+const useChangeEffect = (
   callback: React.EffectCallback,
   dependencies: React.DependencyList
 ): void => {
@@ -19,3 +19,5 @@ export const useChangeEffect = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 };
+
+export default useChangeEffect;
