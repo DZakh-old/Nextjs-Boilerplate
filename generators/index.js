@@ -42,4 +42,12 @@ module.exports = (plop) => {
     execSync(`npm run prettify -- "${folderPath}"`);
     return folderPath;
   });
+
+  plop.setActionType('openFile', (answers, config) => {
+    try {
+      execSync(`code ${config.path}`);
+    } catch (_err) {
+      // Do nothing
+    }
+  });
 };

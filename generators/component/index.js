@@ -7,14 +7,16 @@
 
 const appRootPath = require('app-root-path').path;
 
+const isEmpty = require('lodash/isEmpty');
+const kebabCase = require('lodash/kebabCase');
+const trim = require('lodash/trim');
 const values = require('lodash/values');
-
-const { componentExists } = require('../utils/componentExists');
 
 const COMPONENT_TYPES = {
   connected: 'connected',
   ui: 'ui',
 };
+const COMPONENTS_BASE_PATH = `${appRootPath}/src/components`;
 
 const componentGenerator = {
   description: 'Add a component',
@@ -31,22 +33,23 @@ const componentGenerator = {
       message: 'What should it be called?',
       default: 'Button',
       validate: (value) => {
-        if (/.+/.test(value)) {
-          return componentExists(value)
-            ? 'A component or container with this name already exists'
-            : true;
+        if (isEmpty(trim(value))) {
+          return 'The name is required';
         }
 
-        return 'The name is required';
+        return true;
       },
     },
   ],
   actions: (data) => {
+    const componentName = kebabCase(data.name);
+    const componentDestination = `${COMPONENTS_BASE_PATH}/${data.componentType}/${componentName}`;
+
     const actions = [
       {
         type: 'addMany',
         base: `./component/${data.componentType}`,
-        destination: `${appRootPath}/src/components/${data.componentType}/{{kebabCase name}}`,
+        destination: componentDestination,
         templateFiles: `./component/${data.componentType}/**`,
         abortOnFail: true,
       },
@@ -55,6 +58,11 @@ const componentGenerator = {
     actions.push({
       type: 'prettify',
       path: `/components/${data.componentType}`,
+    });
+
+    actions.push({
+      type: 'openFile',
+      path: `${componentDestination}/${componentName}.component.tsx`,
     });
 
     return actions;
