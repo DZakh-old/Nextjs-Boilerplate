@@ -4,14 +4,18 @@ const cliRulesOverrides = {
 };
 
 module.exports = {
-  env: {
-    es6: true,
-  },
   root: true,
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   parserOptions: {
-    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  env: {
+    browser: true,
+    node: true,
   },
   settings: {
     react: {
@@ -27,7 +31,6 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'plugin:prettier/recommended',
     'plugin:lodash/recommended',
-    'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['optimize-regex', 'sonarjs', 'no-loops', 'no-use-extend-native', 'prettier', 'lodash'],
   rules: {
@@ -120,4 +123,14 @@ module.exports = {
 
     ...(process.env.ESLINT_CLI ? cliRulesOverrides : {}),
   },
+  overrides: [
+    {
+      files: ['*.{ts,tsx}'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+  ],
 };

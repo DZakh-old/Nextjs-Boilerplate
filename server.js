@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable lodash/prefer-lodash-method */
 /* eslint-disable no-console */
 
