@@ -5,6 +5,8 @@ const appRootPath = require('app-root-path').path;
 const isEmpty = require('lodash/isEmpty');
 const values = require('lodash/values');
 
+const { entityExists } = require('../generator-helpers');
+
 const COMPONENT_TYPES = {
   connected: 'connected',
   ui: 'ui',
@@ -20,11 +22,17 @@ const makeComponentsGenerator = (plop) => {
     description: 'Add a component',
     prompts: [
       {
+        type: 'list',
+        name: 'entityType',
+        message: 'Select a destination folder that is related to the type of a component.',
+        choices: values(COMPONENT_TYPES),
+      },
+      {
         type: 'input',
         name: 'name',
         message: 'What should it be called?',
         default: 'Button',
-        validate: (value) => {
+        validate: (value, data) => {
           const name = kebabCase(value);
 
           if (isEmpty(name)) {
@@ -39,14 +47,13 @@ const makeComponentsGenerator = (plop) => {
             return 'The name should contain only latin letters or numbers.';
           }
 
+          const entityFolderPath = `${ENTITY_BASE_PATH}/${data.entityType}`;
+          if (entityExists([entityFolderPath], name)) {
+            return `An entity with the name "${value}" (${name}) already exists.`;
+          }
+
           return true;
         },
-      },
-      {
-        type: 'list',
-        name: 'entityType',
-        message: 'Select a destination folder that is related to the type of a component.',
-        choices: values(COMPONENT_TYPES),
       },
     ],
     actions(data) {

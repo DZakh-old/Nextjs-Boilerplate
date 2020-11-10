@@ -4,6 +4,8 @@ const appRootPath = require('app-root-path').path;
 
 const isEmpty = require('lodash/isEmpty');
 
+const { entityExists } = require('../generator-helpers');
+
 const HOOK_PARAMS_VALUES = {
   withStyles: 'withStyles',
   withAssets: 'withAssets',
@@ -40,6 +42,11 @@ const makeHooksGenerator = (plop) => {
 
           if (!/^[a-z][\w-]*$/.test(name)) {
             return 'The name should contain only latin letters or numbers.';
+          }
+
+          const entityFolderPath = ENTITY_BASE_PATH;
+          if (entityExists([entityFolderPath], name)) {
+            return `An entity with the name "${value}" (${name}) already exists.`;
           }
 
           return true;
