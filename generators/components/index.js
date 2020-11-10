@@ -32,7 +32,7 @@ const makeComponentsGenerator = (plop) => {
         name: 'name',
         message: 'What should it be called?',
         default: 'Button',
-        validate: (value, data) => {
+        validate: (value, answers) => {
           const name = kebabCase(value);
 
           if (isEmpty(name)) {
@@ -47,7 +47,7 @@ const makeComponentsGenerator = (plop) => {
             return 'The name should contain only latin letters or numbers.';
           }
 
-          const entityFolderPath = `${ENTITY_BASE_PATH}/${data.entityType}`;
+          const entityFolderPath = `${ENTITY_BASE_PATH}/${answers.entityType}`;
           if (entityExists([entityFolderPath], name)) {
             return `An entity with the name "${value}" (${name}) already exists.`;
           }
