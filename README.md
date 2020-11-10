@@ -1,7 +1,20 @@
 # Nextjs Boilerplate
 
+## First launch
+
+Generate dev certificates. It'll show you a prompt, it doesn't matter how you pass it.
+
+```bash
+npm run generate-certificates
+```
+
 ```bash
 npm ci
+```
+
+## Development
+
+```bash
 npm run dev
 ```
 

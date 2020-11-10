@@ -14,7 +14,7 @@
     "lint": "cross-env ESLINT_CLI=true eslint --cache",
     "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src",
     "generate": "plop --plopfile ./generators/index.js",
-    "generate-certificates": "cd certificates && openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 && openssl rsa -in keytmp.pem -out key.pem"
+    "generate-certificates": "mkdir ./certificates && cd ./certificates && openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 && openssl rsa -in keytmp.pem -out key.pem"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
