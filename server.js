@@ -9,29 +9,38 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const next = require('next');
 
-const key = fs.readFileSync('./certificates/key.pem');
-const cert = fs.readFileSync('./certificates/cert.pem');
+let key = null;
+let cert = null;
+try {
+  key = fs.readFileSync('./certificates/key.pem');
+  cert = fs.readFileSync('./certificates/cert.pem');
+} catch (err) {
+  // Do nothing
+}
+
+const isHttps = Boolean(key && cert);
+const protocol = isHttps ? 'https:' : 'http:';
+const port = Number(process.env.PORT) || 3000;
+const environment = process.env.NODE_ENV;
+
+const isDev = environment === 'development';
 
 const devProxy = {
   '/api': {
-    target: 'https://your.back.end.com',
+    target: 'https://example.com',
     cookieDomainRewrite: {
       '*': 'localhost',
     },
-    protocol: 'https:',
+    protocol,
     secure: false,
     changeOrigin: true,
     logLevel: 'debug',
   },
 };
 
-const port = Number(process.env.PORT) || 3000;
-
-const env = process.env.NODE_ENV;
-const dev = env === 'development';
 const app = next({
   dir: '.', // base directory where everything is, could move to src later
-  dev,
+  dev: isDev,
 });
 
 const handle = app.getRequestHandler();
@@ -45,7 +54,7 @@ app
     server.use(cookieParser());
 
     // Set up the proxy.
-    if (dev && devProxy) {
+    if (isDev && devProxy) {
       Object.keys(devProxy).forEach((context) => {
         server.use(context, createProxyMiddleware(devProxy[context]));
       });
@@ -54,24 +63,17 @@ app
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
 
-    if (dev) {
-      https.createServer({ key, cert }, server).listen(port, (err) => {
-        if (err) {
-          throw err;
-        }
+    const httpServer = isHttps ? https.createServer({ key, cert }, server) : server;
+    httpServer.listen(port, (err) => {
+      if (err) {
+        throw err;
+      }
 
-        console.log(`> Ready on port ${port} [${env}]`);
-        console.log(`https://localhost:${port}/`);
-      });
-    } else {
-      server.listen(port, (err) => {
-        if (err) {
-          throw err;
-        }
-
-        console.log(`> Ready on port ${port} [${env}]`);
-      });
-    }
+      console.log(`> Ready on port ${port} [${environment}]`);
+      if (isDev) {
+        console.log(`${protocol}//localhost:${port}/`);
+      }
+    });
   })
   .catch((err) => {
     console.error('An error occurred, unable to start the server', err);

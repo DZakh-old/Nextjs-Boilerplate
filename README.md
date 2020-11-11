@@ -2,12 +2,6 @@
 
 ## First launch
 
-Generate dev certificates. It'll show you a prompt, it doesn't matter how you pass it.
-
-```bash
-npm run generate-certificates
-```
-
 ```bash
 npm ci
 ```
@@ -16,6 +10,12 @@ npm ci
 
 ```bash
 npm run dev
+```
+
+To use `https` for development server you need to generate certificates.
+
+```bash
+npm run generate-certificates
 ```
 
 ## File generation
