@@ -5,10 +5,12 @@ const path = require('path');
 
 const { makeComponentsGenerator } = require('./components');
 const { makeHooksGenerator } = require('./hooks');
+const { makeUtilsGenerator } = require('./utils');
 
 module.exports = (plop) => {
   plop.setGenerator('components', makeComponentsGenerator(plop));
   plop.setGenerator('hooks', makeHooksGenerator(plop));
+  plop.setGenerator('utils', makeUtilsGenerator(plop));
 
   plop.setActionType('format', (answers, config) => {
     execSync(`npm run lint -- --fix --ext .js,.jsx,.ts,.tsx "${config.path}"`);

@@ -4,6 +4,7 @@ const appRootPath = require('app-root-path').path;
 
 const isEmpty = require('lodash/isEmpty');
 
+const { EXTENTION, EXTENTIONX } = require('../generator-constants');
 const { entityExists } = require('../generator-helpers');
 
 const HOOK_PARAMS_VALUES = {
@@ -70,12 +71,12 @@ const makeHooksGenerator = (plop) => {
         ],
       },
     ],
-    actions: (data) => {
-      const entityName = kebabCase(data.name);
+    actions: (answers) => {
+      const entityName = kebabCase(answers.name);
       const entityDestination = `${ENTITY_BASE_PATH}/${entityName}`;
       const mainFilePath = `${entityDestination}/${entityName}.hook.tsx`;
 
-      const paramsSet = new Set(data.params);
+      const paramsSet = new Set(answers.params);
       const withStyles = paramsSet.has(HOOK_PARAMS_VALUES.withStyles);
       const withAssets = paramsSet.has(HOOK_PARAMS_VALUES.withAssets);
 
@@ -87,6 +88,8 @@ const makeHooksGenerator = (plop) => {
           templateFiles: `${ENTITY_STARTER_TEMPLATE_PATH}/**`,
           data: {
             name: entityName,
+            ext: EXTENTION,
+            extx: EXTENTIONX,
             withStyles,
             withAssets,
           },
