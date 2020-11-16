@@ -40,7 +40,7 @@ You can create a component of folowing types:
 
 There is only one type of a hook you can create. Nothing tricky. Although I'll keep a small recommendation about hooks here.
 
-> You've probably heard about "[Rules of hooks](https://reactjs.org/docs/hooks-rules.html)". These are great and must have to follow. **But** every rule has an exception, in particular the "exhaustive dependencies". It's exeption are `useEffect` and `useLayoutEffect`. Sometimes you want to call a function specifically on a value change and you don't really care about other dependencies. In this case it's ok to add the `eslint-disable-next-line` comment and keep coding. This is the only case where you can ignore the rule, if you do it for some other reason, you'll more likely break some thing.
+> You've probably heard about "[Rules of hooks](https://reactjs.org/docs/hooks-rules.html)". These are great and must have to follow. **But** every rule has an exception, in particular the "exhaustive dependencies". These exeptions are `useEffect`, `useLayoutEffect`, and `useMemo`. Sometimes you want to react exactly on a specific value change and you don't really care about other dependencies. In this case it's ok to add the `eslint-disable-next-line` comment and keep coding. This is the only case where you can ignore the rule, if you do it for some other reason, you'll more likely break some thing.
 
 ### Utils
 
