@@ -89,7 +89,7 @@
     "*.{js,jsx,ts,tsx}": [
       "npm run lint -- --fix"
     ],
-    "*.{js,jsx,ts,tsx,md,html,css,json}": [
+    "*.{js,jsx,ts,tsx,md,html,css,scss,json}": [
       "npm run prettify --"
     ]
   }
