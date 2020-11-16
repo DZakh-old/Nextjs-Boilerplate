@@ -2,14 +2,7 @@ import cx from 'classnames';
 
 import css from './layout.module.scss';
 
-type Props = {
-  header: React.ReactNode;
-  sidebar?: React.ReactNode;
-  widgetsBar?: React.ReactNode;
-  content: React.ReactNode;
-};
-
-const Layout: React.FC<Props> = ({ header, sidebar, widgetsBar, content }) => {
+const Layout = ({ header, sidebar, widgetsBar, content }) => {
   return (
     <div
       className={cx({

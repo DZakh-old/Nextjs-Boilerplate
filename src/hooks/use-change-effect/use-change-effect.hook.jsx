@@ -1,11 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import noop from 'lodash/noop';
 
-const useChangeEffect = (
-  callback: React.EffectCallback,
-  dependencies: React.DependencyList
-): void => {
+const useChangeEffect = (callback, dependencies) => {
   const shouldSkipEffectRef = useRef(true);
 
   useEffect(() => {

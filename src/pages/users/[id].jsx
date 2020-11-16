@@ -1,21 +1,12 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
-
 import find from 'lodash/fp/find';
 import map from 'lodash/fp/map';
-
-import { User } from '@/interfaces';
 
 import { sampleUserData } from '@/utils/sample-data';
 
 import { Layout } from '@/components/connected/layout';
 import { ListDetail } from '@/components/connected/list-detail';
 
-type Props = {
-  item?: User;
-  errors?: string;
-};
-
-const UsersIdPage: React.FC<Props> = ({ item, errors }) => {
+const UsersIdPage = ({ item, errors }) => {
   if (errors) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
@@ -35,7 +26,7 @@ const UsersIdPage: React.FC<Props> = ({ item, errors }) => {
 
 export default UsersIdPage;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
   const paths = map(
     (user) => ({
@@ -52,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries.
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
     const item = find((data) => data.id === Number(id), sampleUserData);

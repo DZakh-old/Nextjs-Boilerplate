@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
 
 import assignIn from 'lodash/assignIn';
 import get from 'lodash/get';
-
-import { TODO_ANY } from '@/interfaces';
 
 import { FetchError, HttpError } from '@/utils/errors';
 import { isServer } from '@/utils/helpers';
@@ -17,12 +12,12 @@ const NUMBER_OF_FETCH_RETRIES = 3;
 const RETRY_DELAY = 1000;
 const UNAUTHORIZED_HTTP_STATUS = 401;
 
-let serverSideCtx: TODO_ANY = null;
-function storeServerSideCtx(newServerSideCtx: TODO_ANY) {
+let serverSideCtx = null;
+function storeServerSideCtx(newServerSideCtx) {
   serverSideCtx = newServerSideCtx;
 }
 
-function withJsonContent(options: TODO_ANY): TODO_ANY {
+function withJsonContent(options) {
   return {
     ...options,
     headers: {
@@ -32,16 +27,10 @@ function withJsonContent(options: TODO_ANY): TODO_ANY {
   };
 }
 
-export type CallApi<D = any> = (
-  url: string,
-  requestOptions?: TODO_ANY,
-  retries?: number
-) => Promise<{
-  response: Response;
-  data: D;
-}>;
+const callApi = async (url, requestOptions = {}, retries = 0) => {
+  let data = null;
+  let response = null;
 
-const callApi: CallApi = async (url, requestOptions = {}, retries = 0) => {
   try {
     const requestOptionsWithCookie = {
       ...requestOptions,
@@ -57,19 +46,14 @@ const callApi: CallApi = async (url, requestOptions = {}, retries = 0) => {
       ),
     };
 
-    const response = await fetch(url, requestOptionsWithCookie).catch((err) => {
+    response = await fetch(url, requestOptionsWithCookie).catch((err) => {
       throw new FetchError({ error: err, retries });
     });
 
-    if (!response.ok) {
-      throw new HttpError({ response });
-    }
-
     if (isServer) {
-      serverSideCtx.res.setHeader('Set-Cookie', (response.headers as any).raw()['set-cookie']);
+      serverSideCtx.res.setHeader('Set-Cookie', response.headers.raw()['set-cookie']);
     }
 
-    let data;
     try {
       data = await response.json();
     } catch (err) {
@@ -77,24 +61,28 @@ const callApi: CallApi = async (url, requestOptions = {}, retries = 0) => {
     }
 
     // eslint-disable-next-line camelcase
-    if (data?.redirect_to) {
+    if (data && data.redirect_to) {
       isomorphicRedirect(data.redirect_to, serverSideCtx);
     }
 
+    if (!response.ok) {
+      throw new HttpError({ response });
+    }
+
     return { response, data };
-  } catch (err) {
+  } catch (error) {
     switch (true) {
-      case err instanceof FetchError && err.retries < NUMBER_OF_FETCH_RETRIES:
+      case error instanceof FetchError && error.retries < NUMBER_OF_FETCH_RETRIES:
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(callApi(url, requestOptions, retries + 1));
           }, RETRY_DELAY * (retries + 1));
         });
-      case err instanceof HttpError && err.response.status === UNAUTHORIZED_HTTP_STATUS:
+      case error instanceof HttpError && error.response.status === UNAUTHORIZED_HTTP_STATUS:
         isomorphicRedirect('/', serverSideCtx);
-        throw err;
+        return { response, data, error };
       default:
-        throw err;
+        return { response, data, error };
     }
   }
 };

@@ -2,13 +2,7 @@ import cx from 'classnames';
 
 import css from './sidebar.module.scss';
 
-type Props = {
-  className?: string;
-  children: React.ReactNode;
-  position: 'left' | 'right';
-};
-
-const Sidebar: React.FC<Props> = ({ children, className = '', position }) => {
+const Sidebar = ({ children, className = '', position }) => {
   return (
     <div
       className={cx({

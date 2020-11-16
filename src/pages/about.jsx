@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Layout } from '@/components/connected/layout';
 
-const AboutPage: React.FC = () => {
+const AboutPage = () => {
   return (
     <Layout title="About | Next.js + TypeScript Example">
       <h1>About</h1>

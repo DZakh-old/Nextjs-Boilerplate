@@ -1,13 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
 
-import { User } from '@/interfaces';
-
-type Props = {
-  data: User;
-};
-
-const ListItem: React.FC<Props> = ({ data }) => {
+const ListItem = ({ data }) => {
   return (
     <Link href="/users/[id]" as={`/users/${data.id}`}>
       <a>

@@ -4,31 +4,7 @@ import map from 'lodash/map';
 
 import css from './table.module.scss';
 
-type Cells = {
-  [cell: string]: React.ReactNode | string;
-};
-type Row = Cells & {
-  id: string | number;
-  className?: string;
-  controls?: React.ReactNode | string;
-};
-type Column = { name: string; title: string; width: number };
-type RowProps =
-  | {
-      header: true;
-      columns: Column[];
-      rowData?: undefined;
-      controlsWidth?: undefined;
-    }
-  | {
-      header?: undefined;
-      columns: Column[];
-      rowData: Row;
-      controlsWidth?: number;
-    };
-type TableProps = { className?: string; columns: Column[]; rows: Row[]; controlsWidth?: number };
-
-const Row: React.FC<RowProps> = ({ header = false, columns, rowData, controlsWidth }) => {
+const Row = ({ header = false, columns, rowData, controlsWidth }) => {
   return (
     <div className={cx(css.row, (rowData || {}).className, { [css.header]: header })}>
       {header
@@ -55,7 +31,7 @@ const Row: React.FC<RowProps> = ({ header = false, columns, rowData, controlsWid
   );
 };
 
-const Table: React.FC<TableProps> = ({ className, columns, rows, controlsWidth }) => {
+const Table = ({ className, columns, rows, controlsWidth }) => {
   return (
     <div className={cx(css.table, className)}>
       <Row header columns={columns} />

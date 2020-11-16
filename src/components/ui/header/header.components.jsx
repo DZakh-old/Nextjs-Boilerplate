@@ -2,21 +2,7 @@ import cx from 'classnames';
 
 import css from './header.module.scss';
 
-type Props = {
-  leftSlot?: React.ReactNode;
-  centralSlot?: React.ReactNode;
-  rightSlot?: React.ReactNode;
-  className?: string;
-  withBaseStyles?: boolean;
-};
-
-const Header: React.FC<Props> = ({
-  leftSlot,
-  centralSlot,
-  rightSlot,
-  className = '',
-  withBaseStyles = false,
-}) => {
+const Header = ({ leftSlot, centralSlot, rightSlot, className = '', withBaseStyles = false }) => {
   return (
     <div
       className={cx({

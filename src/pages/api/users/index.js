@@ -1,10 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
 import isArray from 'lodash/fp/isArray';
 
 import { sampleUserData } from '@/utils/sample-data';
 
-export const usersHandler = (_req: NextApiRequest, res: NextApiResponse): void => {
+export const usersHandler = (_req, res) => {
   try {
     if (!isArray(sampleUserData)) {
       throw new Error('Cannot find user data');
