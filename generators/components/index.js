@@ -5,7 +5,6 @@ const appRootPath = require('app-root-path').path;
 const isEmpty = require('lodash/isEmpty');
 const values = require('lodash/values');
 
-const { EXTENTION, EXTENTIONX } = require('../generator-constants');
 const { entityExists } = require('../generator-helpers');
 
 const COMPONENT_TYPES = {
@@ -70,7 +69,6 @@ const makeComponentsGenerator = (plop) => {
           templateFiles: `${ENTITY_STARTER_TEMPLATE_PATH}/**`,
           data: {
             name: entityName,
-            ext: EXTENTION,
           },
         },
       ];
@@ -82,7 +80,6 @@ const makeComponentsGenerator = (plop) => {
         templateFiles: `${TEMPLATES_BASE_PATH}/${answers.entityType}/**`,
         data: {
           name: entityName,
-          extx: EXTENTIONX,
         },
       });
 

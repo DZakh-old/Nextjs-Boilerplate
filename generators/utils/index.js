@@ -4,7 +4,6 @@ const appRootPath = require('app-root-path').path;
 
 const isEmpty = require('lodash/isEmpty');
 
-const { EXTENTION } = require('../generator-constants');
 const { entityExists } = require('../generator-helpers');
 
 const TEMPLATES_BASE_PATH = './utils';
@@ -46,7 +45,7 @@ const makeUtilsGenerator = (plop) => {
     actions: (answers) => {
       const entityName = kebabCase(answers.name);
       const entityDestination = `${ENTITY_BASE_PATH}`;
-      const mainFilePath = `${entityDestination}/${entityName}.${EXTENTION}`;
+      const mainFilePath = `${entityDestination}/${entityName}.js`;
 
       const actions = [
         {
@@ -56,7 +55,6 @@ const makeUtilsGenerator = (plop) => {
           templateFiles: `${ENTITY_STARTER_TEMPLATE_PATH}/**`,
           data: {
             name: entityName,
-            ext: EXTENTION,
           },
         },
       ];
