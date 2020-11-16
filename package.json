@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development PORT=3000 API_HOST_URL='/' node server.js",
+    "dev": "cross-env NODE_ENV=development node server.js",
     "build": "cross-env NODE_ENV=production next build",
     "start": "node server.js",
     "export": "next export",

@@ -43,9 +43,6 @@ const optimizedImagesConfig = {
 };
 
 const nextConfiguration = {
-  publicRuntimeConfig: {
-    API_HOST_URL: process.env.API_HOST_URL,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

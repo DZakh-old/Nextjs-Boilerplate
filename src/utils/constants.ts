@@ -1,5 +1,3 @@
 import trimEnd from 'lodash/trimEnd';
 
-import { getEnvVariable } from '@/utils/get-env-variable';
-
-export const API_HOST_URL = `${trimEnd(getEnvVariable('API_HOST_URL'), '/')}/v1`;
+export const API_HOST_URL = trimEnd(process.env.NEXT_PUBLIC_API_HOST_URL, '/');
