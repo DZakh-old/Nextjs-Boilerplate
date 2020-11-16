@@ -12,7 +12,7 @@ import usersData from './assets/data.json';
 import css from './{{ kebabCase name }}.module.scss';
 {{/if}}
 
-const {{ camelCase name }} = (): {{#if withStyles}}React.ReactNode{{else}}number{{/if}} => {
+const {{ camelCase name }} = () => {
 {{#if withAssets}}
 console.error('CHECK ASSETS: ', usersData)
 {{/if}}

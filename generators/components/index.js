@@ -59,7 +59,7 @@ const makeComponentsGenerator = (plop) => {
     actions(answers) {
       const entityName = kebabCase(answers.name);
       const entityDestination = `${ENTITY_BASE_PATH}/${answers.entityType}/${entityName}`;
-      const mainFilePath = `${entityDestination}/${entityName}.component.tsx`;
+      const mainFilePath = `${entityDestination}/${entityName}.component.jsx`;
 
       const actions = [
         {

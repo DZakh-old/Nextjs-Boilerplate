@@ -73,7 +73,7 @@ const makeHooksGenerator = (plop) => {
     actions: (answers) => {
       const entityName = kebabCase(answers.name);
       const entityDestination = `${ENTITY_BASE_PATH}/${entityName}`;
-      const mainFilePath = `${entityDestination}/${entityName}.hook.tsx`;
+      const mainFilePath = `${entityDestination}/${entityName}.hook.jsx`;
 
       const paramsSet = new Set(answers.params);
       const withStyles = paramsSet.has(HOOK_PARAMS_VALUES.withStyles);

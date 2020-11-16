@@ -3,16 +3,12 @@ import React from 'react';
 
 import css from './{{ kebabCase name }}.module.scss';
 
-type Props = {
-className?: string;
+const {{ properCase name }} = ({ className }) => {
+return (
+<div className={cx(css.container, className)}>
+  {{ properCase name }} component
+</div>
+);
 };
 
-const {{ properCase name }}: React.FC<Props> = ({ className }) => {
-  return (
-  <div className={cx(css.container, className)}>
-    {{ properCase name }} component
-  </div>
-  );
-  };
-
-  export default {{ properCase name }};
+export default {{ properCase name }};
