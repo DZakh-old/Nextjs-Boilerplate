@@ -1,12 +1,15 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable global-require */
+const plugins = {
+  'postcss-flexbugs-fixes': {},
+  'postcss-css-variables': {
+    preserve: true,
+  },
+  autoprefixer: {},
+};
+
+if (process.env.NODE_ENV !== 'development') {
+  plugins.cssnano = {};
+}
 
 module.exports = {
-  plugins: [
-    require('postcss-import'),
-    require('postcss-preset-env')({
-      browsers: 'last 2 versions',
-      stage: 0,
-    }),
-  ],
+  plugins,
 };

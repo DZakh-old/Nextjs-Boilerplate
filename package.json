@@ -41,8 +41,6 @@
     "mobx-react-lite": "^2.2.2",
     "mobx-state-tree": "^3.17.2",
     "mst-middlewares": "^3.17.2",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
     "nanoid": "^3.1.16",
     "next": "^10.0.1",
     "next-compose-plugins": "^2.2.0",
@@ -58,6 +56,10 @@
     "cross-env": "^7.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5",
+    "cssnano": "^4.1.10",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "autoprefixer": "^9.7.5",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
