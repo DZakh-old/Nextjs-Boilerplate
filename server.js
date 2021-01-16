@@ -21,13 +21,17 @@ try {
 const isHttps = Boolean(key && cert);
 const protocol = isHttps ? 'https:' : 'http:';
 const port = Number(process.env.PORT) || 3000;
-const environment = process.env.NODE_ENV;
+
+const isTryStart = Boolean(process.env.APP_IS_TRY_START);
+const environment = isTryStart ? 'development' : process.env.NODE_ENV;
+
+require('dotenv').config({ path: `./.env.${environment}` });
 
 const isDev = environment === 'development';
 
 const devProxy = {
   '/api': {
-    target: 'https://example.com',
+    target: process.env.NEXT_PUBLIC_API_HOST_URL,
     cookieDomainRewrite: {
       '*': 'localhost',
     },
@@ -40,7 +44,7 @@ const devProxy = {
 
 const app = next({
   dir: '.', // base directory where everything is, could move to src later
-  dev: isDev,
+  dev: isTryStart ? false : isDev,
 });
 
 const handle = app.getRequestHandler();
@@ -61,7 +65,9 @@ app
     }
 
     // Default catch-all handler to allow Next.js to handle all other routes
-    server.all('*', (req, res) => handle(req, res));
+    server.all('*', (req, res) => {
+      return handle(req, res);
+    });
 
     const httpServer = isHttps ? https.createServer({ key, cert }, server) : server;
     httpServer.listen(port, (err) => {
