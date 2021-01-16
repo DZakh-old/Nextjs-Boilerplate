@@ -1,20 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import Head from 'next/head';
 
-import { useInitialStore, StoreProvider } from '@/models';
+import React from 'react';
+
+import Head from 'next/head';
 
 import '@/styles/main.scss';
 
 const App = ({ Component, pageProps }) => {
-  const $rootStore = useInitialStore(pageProps.initialState);
-
   return (
-    <StoreProvider store={$rootStore}>
+    <React.Fragment>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Component {...pageProps} />
-    </StoreProvider>
+    </React.Fragment>
   );
 };
 
