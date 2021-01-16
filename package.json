@@ -1,21 +1,36 @@
 {
   "name": "nextjs-boilerplate",
-  "description": "A real thing!",
   "version": "1.0.0",
+  "description": "A real thing!",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node server.js",
     "build": "cross-env NODE_ENV=production next build",
-    "start": "node server.js",
-    "try-build:start": "cross-env-shell APP_IS_TRY_START=true npm run build && npm run start",
+    "dev": "npm run dev:start",
+    "dev:start": "cross-env NODE_ENV=development npm run start",
     "export": "next export",
-    "type-check": "tsc",
-    "test-staged": "lint-staged",
-    "prettify": "prettier --write",
+    "generate": "plop --plopfile ./generators/index.js",
+    "generate-certificates": "mkdir ./certificates && cd ./certificates && openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 && openssl rsa -in keytmp.pem -out key.pem",
     "lint": "cross-env ESLINT_CLI=true eslint --cache",
     "lint:fix": "npm run lint -- --fix --ext .js,.jsx,.ts,.tsx ./src",
-    "generate": "plop --plopfile ./generators/index.js",
-    "generate-certificates": "mkdir ./certificates && cd ./certificates && openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 && openssl rsa -in keytmp.pem -out key.pem"
+    "prettify": "prettier --write",
+    "prod:start": "cross-env NODE_ENV=production npm run start",
+    "start": "node server.js",
+    "test-staged": "lint-staged",
+    "try:start": "cross-env NODE_ENV=production APP_IS_TRY_START=true npm run start",
+    "type-check": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint -- --fix"
+    ],
+    "*.{js,jsx,ts,tsx,md,html,css,scss,json}": [
+      "npm run prettify --"
+    ]
   },
   "dependencies": {
     "@types/classnames": "^2.2.11",
@@ -28,8 +43,11 @@
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "@zeit/next-sass": "^1.0.1",
+    "autoprefixer": "^9.7.5",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.2",
+    "cssnano": "^4.1.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.6",
@@ -42,25 +60,22 @@
     "mobx-state-tree": "^3.17.2",
     "mst-middlewares": "^3.17.2",
     "nanoid": "^3.1.16",
-    "next": "^10.0.1",
+    "next": "^10.0.5",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.6.2",
     "next-videos": "^1.4.0",
     "node-sass": "^5.0.0",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-flexbugs-fixes": "^4.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scrollbars-custom": "^4.0.25",
     "svg-sprite-loader": "^5.0.0",
-    "type-fest": "^0.18.0",
-    "webpack-filter-warnings-plugin": "^1.2.1",
-    "cross-env": "^7.0.2",
     "ts-node": "^9.0.0",
+    "type-fest": "^0.18.0",
     "typescript": "^4.0.5",
-    "cssnano": "^4.1.10",
-    "postcss-css-variables": "^0.17.0",
-    "postcss-flexbugs-fixes": "^4.2.1",
-    "autoprefixer": "^9.7.5",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "devDependencies": {
     "app-root-path": "^3.0.0",
@@ -82,18 +97,5 @@
     "lint-staged": "^10.5.1",
     "plop": "^2.7.4",
     "prettier": "^2.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run lint -- --fix"
-    ],
-    "*.{js,jsx,ts,tsx,md,html,css,scss,json}": [
-      "npm run prettify --"
-    ]
   }
 }
