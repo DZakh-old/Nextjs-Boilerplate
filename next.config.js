@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-param-reassign */
 
 const path = require('path');
@@ -9,11 +8,15 @@ const withOptimizedImages = require('next-optimized-images');
 const withVideos = require('next-videos');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const sassConfig = {
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: '[path]-[local]_[hash:base64:5]',
+    localIdentName: isDevelopment
+      ? '[path]--[name]--[local]_[hash:base64:5]'
+      : '[local]_[hash:base64:5]',
   },
 };
 
