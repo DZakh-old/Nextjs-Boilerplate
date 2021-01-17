@@ -123,6 +123,7 @@ module.exports = {
           // Split the main components of the app to avoid a solid wall of imports.
           // Other folders from the src will be imported together.
           { pattern: '@/utils/**', group: 'internal', position: 'after' },
+          { pattern: '@/store/**', group: 'internal', position: 'after' },
           { pattern: '@/components/**', group: 'internal', position: 'after' },
 
           // In some reason eslint thinks, that public is an external group

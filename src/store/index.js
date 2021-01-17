@@ -7,10 +7,10 @@ import createSagaMiddleware from 'redux-saga';
 import { get } from 'lodash';
 
 // import { MODULE_NAMES } from '@/utils/constants';
+import { isDevelopment, isServer, checkIsFeatureActive, FEATURES } from '@/utils/helpers';
+
 import { withPersist } from '@/store/persist';
 import { rootSaga } from '@/store/sagas';
-
-import { isDevelopment, isServer, checkIsFeatureActive, FEATURES } from '@/utils/helpers';
 
 function makeStore() {
   const combinedReducer = combineReducers({
