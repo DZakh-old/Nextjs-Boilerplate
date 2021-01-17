@@ -13,11 +13,16 @@ module.exports = {
     sourceType: 'module', // Allows for the use of imports
   },
   settings: {
+    // Tells eslint-plugin-react to automatically detect the version of React to use
     react: {
-      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+      version: 'detect',
     },
+    // This loads <rootdir>/jsconfig.json to eslint
     'import/resolver': {
-      typescript: {}, // This loads <rootdir>/tsconfig.json to eslint
+      alias: {
+        map: [['@/*', './src/*']],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      },
     },
   },
   extends: [
