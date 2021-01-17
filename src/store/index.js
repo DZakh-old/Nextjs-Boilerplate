@@ -11,12 +11,12 @@ import { withPersist } from '@/store/persist';
 
 import { isDevelopment, isServer, checkIsFeatureActive, FEATURES } from '@/utils/helpers';
 
-export const makeStore = () => {
+function makeStore() {
   const combinedReducer = combineReducers({
     // [MODULE_NAMES.users]: () => {},
   });
 
-  const rootReducer = (state, action) => {
+  function rootReducer(state, action) {
     if (action.type === HYDRATE) {
       const nextState = {
         ...state, // use previous state
@@ -30,7 +30,7 @@ export const makeStore = () => {
     }
 
     return combinedReducer(state, action);
-  };
+  }
 
   const sagaMiddleware = createSagaMiddleware();
 
@@ -50,7 +50,7 @@ export const makeStore = () => {
     );
   }
 
-  const makeConfiguredStore = (reducer) => {
+  function makeConfiguredStore(reducer) {
     return configureStore({
       reducer,
       middleware: (getDefaultMiddleware) => {
@@ -63,7 +63,7 @@ export const makeStore = () => {
         }).concat(middleware);
       },
     });
-  };
+  }
 
   let store;
   if (isServer) {
@@ -85,6 +85,6 @@ export const makeStore = () => {
   }
 
   return store;
-};
+}
 
 export const StoreWrapper = createWrapper(makeStore);
