@@ -11,62 +11,61 @@ import { withPersist } from '@/store/persist';
 
 import { isDevelopment, isServer, checkIsFeatureActive, FEATURES } from '@/utils/helpers';
 
-const combinedReducer = combineReducers({
-  // [MODULE_NAMES.users]: () => {},
-});
+export const makeStore = () => {
+  const combinedReducer = combineReducers({
+    // [MODULE_NAMES.users]: () => {},
+  });
 
-const rootReducer = (state, action) => {
-  if (action.type === HYDRATE) {
-    const nextState = {
-      ...state, // use previous state
-      ...action.payload, // apply delta from hydration
-    };
-    if (typeof window !== 'undefined' && state && state.router) {
-      // preserve router value on client side navigation
-      nextState.router = state.router;
+  const rootReducer = (state, action) => {
+    if (action.type === HYDRATE) {
+      const nextState = {
+        ...state, // use previous state
+        ...action.payload, // apply delta from hydration
+      };
+      if (!isServer && state && state.router) {
+        // preserve router value on client side navigation
+        nextState.router = state.router;
+      }
+      return nextState;
     }
-    return nextState;
+
+    return combinedReducer(state, action);
+  };
+
+  const sagaMiddleware = createSagaMiddleware();
+
+  const middleware = [promiseMiddleware, sagaMiddleware];
+
+  if (isDevelopment || checkIsFeatureActive(FEATURES.logs)) {
+    middleware.push(
+      // eslint-disable-next-line global-require
+      require('redux-logger').createLogger({
+        predicate: (getState, action) => {
+          return !get(action, 'meta.isSilent');
+        },
+        collapsed: true,
+        duration: true,
+        diff: true,
+      })
+    );
   }
 
-  return combinedReducer(state, action);
-};
-
-const sagaMiddleware = createSagaMiddleware();
-
-const middleware = [promiseMiddleware, sagaMiddleware];
-
-if (isDevelopment || checkIsFeatureActive(FEATURES.logs)) {
-  middleware.push(
-    // eslint-disable-next-line global-require
-    require('redux-logger').createLogger({
-      predicate: (getState, action) => {
-        return !get(action, 'meta.isSilent');
+  const makeConfiguredStore = (reducer) => {
+    return configureStore({
+      reducer,
+      middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware({
+          thunk: false,
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            ignoredActionPaths: ['meta.promise'],
+          },
+        }).concat(middleware);
       },
-      collapsed: true,
-      duration: true,
-      diff: true,
-    })
-  );
-}
+    });
+  };
 
-const makeConfiguredStore = (reducer) => {
-  return configureStore({
-    reducer,
-    middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware({
-        thunk: false,
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          ignoredActionPaths: ['meta.promise'],
-        },
-      }).concat(middleware);
-    },
-  });
-};
-
-export const makeStore = () => {
   let store;
-
   if (isServer) {
     store = makeConfiguredStore(rootReducer);
   } else {
