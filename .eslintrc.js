@@ -20,7 +20,7 @@ module.exports = {
     // This loads <rootdir>/jsconfig.json to eslint
     'import/resolver': {
       alias: {
-        map: [['@/*', './src/*']],
+        map: [['@', './src']],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       },
     },
