@@ -38,6 +38,8 @@ module.exports = {
     'no-loops/no-loops': 'warn',
     'prettier/prettier': 'warn',
 
+    'lodash/import-scope': ['error', 'member'],
+
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [
