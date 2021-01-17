@@ -1,9 +1,6 @@
 const fs = require('fs');
 
-const flatMap = require('lodash/flatMap');
-const includes = require('lodash/includes');
-const map = require('lodash/map');
-const split = require('lodash/split');
+const { flatMap, includes, map, split } = require('lodash');
 
 function getNameFirstPart(name) {
   return split(name, '.')[0] || '';

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import constant from 'lodash/constant';
-import isFunction from 'lodash/isFunction';
+import { constant, isFunction } from 'lodash';
 
 const useReactiveRef = (state, functionDependencies = []) => {
   const isStateGetterFunction = isFunction(state);

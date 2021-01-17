@@ -5,14 +5,13 @@ import { ListItem } from '@/components/connected/list-item';
 const List = ({ items }) => {
   return (
     <ul>
-      {map(
-        (item) => (
+      {map((item) => {
+        return (
           <li key={item.id}>
             <ListItem data={item} />
           </li>
-        ),
-        items
-      )}
+        );
+      }, items)}
     </ul>
   );
 };

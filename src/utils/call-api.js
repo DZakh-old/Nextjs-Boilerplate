@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
 
-import assignIn from 'lodash/assignIn';
-import get from 'lodash/get';
+import { assignIn, get } from 'lodash';
 
 import { FetchError, HttpError } from '@/utils/errors';
 import { isServer } from '@/utils/helpers';

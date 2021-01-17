@@ -1,10 +1,10 @@
 import Router from 'next/router';
 
-import get from 'lodash/get';
+import { get } from 'lodash';
 
 export function isomorphicRedirect(route, ctx) {
   const { router } = Router;
-  const isClient = !!router;
+  const isClient = Boolean(router);
   const hasServerSideContext = ctx && ctx.req && ctx.res;
 
   if (!isClient && !hasServerSideContext) {

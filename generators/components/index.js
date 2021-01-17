@@ -2,8 +2,7 @@
 
 const appRootPath = require('app-root-path').path;
 
-const isEmpty = require('lodash/isEmpty');
-const values = require('lodash/values');
+const { isEmpty, values } = require('lodash');
 
 const { entityExists } = require('../generator-helpers');
 

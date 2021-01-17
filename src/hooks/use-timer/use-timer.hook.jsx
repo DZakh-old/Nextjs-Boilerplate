@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import noop from 'lodash/noop';
+import { noop } from 'lodash';
 
 const useTimer = ({ from = 0, to = Infinity, delay = 1000, onStart = noop, onFinish = noop }) => {
   const [counter, setCounter] = useState(from);
@@ -34,7 +34,9 @@ const useTimer = ({ from = 0, to = Infinity, delay = 1000, onStart = noop, onFin
       });
     }, delay);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      return clearInterval(intervalId);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delay, from, to]);

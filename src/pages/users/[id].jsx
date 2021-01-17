@@ -28,12 +28,11 @@ export default UsersIdPage;
 
 export const getStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
-  const paths = map(
-    (user) => ({
+  const paths = map((user) => {
+    return {
       params: { id: user.id.toString() },
-    }),
-    sampleUserData
-  );
+    };
+  }, sampleUserData);
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
@@ -46,7 +45,9 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
-    const item = find((data) => data.id === Number(id), sampleUserData);
+    const item = find((data) => {
+      return data.id === Number(id);
+    }, sampleUserData);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
     return { props: { item } };

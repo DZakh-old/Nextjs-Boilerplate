@@ -1,6 +1,6 @@
 import cx from 'classnames';
 
-import map from 'lodash/map';
+import { map } from 'lodash';
 
 import css from './table.module.scss';
 

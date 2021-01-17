@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import noop from 'lodash/noop';
+import { noop } from 'lodash';
 
 export const useTimestampTimer = ({
   tillTimestamp = null,
@@ -43,7 +43,9 @@ export const useTimestampTimer = ({
       setCounter(currentCounter);
     }, delay);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      return clearInterval(intervalId);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delay, tillTimestamp]);
