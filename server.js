@@ -27,7 +27,7 @@ const environment = isTryStart ? 'development' : process.env.NODE_ENV;
 
 require('dotenv').config({ path: `./.env.${environment}` });
 
-const isDev = environment === 'development';
+const isDevelopment = environment === 'development';
 
 const devProxy = {
   '/api': {
@@ -44,7 +44,7 @@ const devProxy = {
 
 const app = next({
   dir: '.', // base directory where everything is, could move to src later
-  dev: isTryStart ? false : isDev,
+  dev: isTryStart ? false : isDevelopment,
 });
 
 const handle = app.getRequestHandler();
@@ -58,7 +58,7 @@ app
     server.use(cookieParser());
 
     // Set up the proxy.
-    if (isDev && devProxy) {
+    if (isDevelopment && devProxy) {
       Object.keys(devProxy).forEach((context) => {
         server.use(context, createProxyMiddleware(devProxy[context]));
       });
@@ -76,7 +76,7 @@ app
       }
 
       console.log(`> Ready on port ${port} [${environment}]`);
-      if (isDev) {
+      if (isDevelopment) {
         console.log(`${protocol}//localhost:${port}/`);
       }
     });

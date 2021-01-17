@@ -2,18 +2,27 @@
 
 import Head from 'next/head';
 import React from 'react';
+import { useStore } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { StoreWrapper } from '@/store';
 
 import '@/styles/main.scss';
 
 const App = ({ Component, pageProps }) => {
+  const store = useStore();
+
   return (
-    <React.Fragment>
+    <PersistGate persistor={store.__persistor} loading={null}>
       <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>Nextjs Boilerplate</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
+
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Component {...pageProps} />
-    </React.Fragment>
+    </PersistGate>
   );
 };
 
-export default App;
+export default StoreWrapper.withRedux(App);
