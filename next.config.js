@@ -46,9 +46,6 @@ const optimizedImagesConfig = {
 };
 
 const nextConfiguration = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   webpack: (config) => {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
 
