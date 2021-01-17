@@ -25,20 +25,31 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    'optimize-regex',
+    'sonarjs',
+    'no-loops',
+    'no-use-extend-native',
+    'prettier',
+    'lodash',
+    'redux-saga',
+  ],
   extends: [
     'airbnb',
     'airbnb/hooks',
     'plugin:sonarjs/recommended',
     'plugin:prettier/recommended',
     'plugin:lodash/recommended',
+    'plugin:redux-saga/recommended',
   ],
-  plugins: ['optimize-regex', 'sonarjs', 'no-loops', 'no-use-extend-native', 'prettier', 'lodash'],
   rules: {
     'optimize-regex/optimize-regex': 'warn',
     'no-loops/no-loops': 'warn',
     'prettier/prettier': 'warn',
 
     'lodash/import-scope': ['error', 'member'],
+
+    'redux-saga/no-unhandled-errors': 'off',
 
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
