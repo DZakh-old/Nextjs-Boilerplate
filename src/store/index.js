@@ -8,6 +8,7 @@ import { get } from 'lodash';
 
 // import { MODULE_NAMES } from '@/utils/constants';
 import { withPersist } from '@/store/persist';
+import { rootSaga } from '@/store/sagas';
 
 import { isDevelopment, isServer, checkIsFeatureActive, FEATURES } from '@/utils/helpers';
 
@@ -75,7 +76,7 @@ function makeStore() {
     store.__persistor = persistor; // Nasty hack
   }
 
-  // sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
   if (!isServer) {
     global.window.APP_SDK = {
