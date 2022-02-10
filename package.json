@@ -52,7 +52,7 @@
     "next-optimized-images": "^2.6.2",
     "next-redux-wrapper": "^6.0.2",
     "next-videos": "^1.4.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "postcss-css-variables": "^0.17.0",
     "postcss-flexbugs-fixes": "^4.2.1",
     "react": "^17.0.1",
